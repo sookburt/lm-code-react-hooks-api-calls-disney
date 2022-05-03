@@ -10,9 +10,8 @@ import axios from 'axios';
 const App : React.FC = () => {
 
 	const [currentPage, setCurrentPage] = useState<number>(1);
-
-  // Some dummy state representing disney characters
   const [characters, setCharacters] = useState<Array<DisneyCharacter>>([]);
+  const [characterFavourites, setCharacterFavourites] = useState<Array<number>>([]);
 
   useEffect(() => {
     getCharacters(currentPage);
@@ -28,7 +27,9 @@ const App : React.FC = () => {
     <div className="page">
       <Header currentPage={currentPage} />
       <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <CharacterContainer characters={characters} />
+      <CharacterContainer characters={characters} 
+          characterFavourites={characterFavourites} 
+          updateFavourites={setCharacterFavourites}  />
     </div>
   );
 }
